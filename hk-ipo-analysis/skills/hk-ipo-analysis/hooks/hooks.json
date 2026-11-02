@@ -1,0 +1,22 @@
+{
+  "$comment": [
+    "Host contract (AgnesCode/goose, crates/goose/src/hooks/mod.rs): command runs under sh -c.",
+    "The host replaces ${PLUGIN_ROOT} with this plugin root. matcher is an unanchored regex on the tool name.",
+    "The matcher covers goose names (developer__shell / developer__write / agnes_web_search__WebSearch)",
+    "and Claude names (Bash / Write / WebSearch). pretool.py decides by capability."
+  ],
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "(?i)web.?search|web.?fetch|webfetch|web.?scrape|read.?webpage|browse|browser|google.?search|image.?search|entity.?search|encyclopedia|shell|bash|terminal|console|powershell|exec|write|edit|str_replace|multiedit|patch|create",
+        "hooks": [
+          {
+            "type": "command",
+            "timeout": 20,
+            "command": "PY=$(command -v python3 || command -v python); if [ -z \"$PY\" ]; then PY='py -3'; fi; exec $PY \"${PLUGIN_ROOT}/hooks/pretool.py\""
+          }
+        ]
+      }
+    ]
+  }
+}

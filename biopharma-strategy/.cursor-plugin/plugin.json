@@ -1,0 +1,18 @@
+{
+  "name": "biopharma-strategy",
+  "version": "1.1.5",
+  "description": "A four-step biopharma note, or upstream tracking that keeps only material events. Objective only. No orders.",
+  "author": {
+    "name": "Star Wealth"
+  },
+  "homepage": "https://www.fosunwealth.com",
+  "license": "MIT",
+  "keywords": [
+    "fosunwealth",
+    "starwealth",
+    "finance",
+    "hkex",
+    "research"
+  ],
+  "logo": "assets/icon.png"
+}

@@ -1,0 +1,1 @@
+from.activation_gate import check_activation,ensure_activated,find_api_key,guide_text,GuideUrlError,guide_url,hub_url,is_fsk_key,save_api_key,service_url,verify_url;a=['GuideUrlError','check_activation','ensure_activated','find_api_key','guide_text','guide_url','hub_url','is_fsk_key','save_api_key','service_url','verify_url']

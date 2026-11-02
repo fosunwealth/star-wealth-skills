@@ -1,0 +1,18 @@
+{
+  "name": "fw-deep-research",
+  "version": "3.7.56",
+  "description": "One interactive HTML research report for a named Hong Kong or US stock: business, valuation, financials, and catalysts. Objective only. No orders.",
+  "author": {
+    "name": "Star Wealth"
+  },
+  "homepage": "https://www.fosunwealth.com",
+  "license": "MIT",
+  "keywords": [
+    "fosunwealth",
+    "starwealth",
+    "finance",
+    "hkex",
+    "research"
+  ],
+  "logo": "assets/icon.png"
+}

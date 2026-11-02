@@ -1,0 +1,10 @@
+{
+  "name": "Hong Kong biopharma watchlist (3 names)",
+  "last_updated": "2026-08-20",
+  "note": "Three names, where catchable events clustered in the backtest: Akeso (clinical readouts, conference abstracts), Henlius (approvals via EMA CHMP and FDA), Innovent (readouts and approvals).",
+  "configs": [
+    "akeso_tracking_config.json",
+    "henlius_tracking_config.json",
+    "innovent_tracking_config.json"
+  ]
+}

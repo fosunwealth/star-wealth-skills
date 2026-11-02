@@ -1,0 +1,35 @@
+{
+  "company": "<Chinese legal name, kept for NMPA and CDE search>",
+  "company_en": "English Name",
+  "cde_company": "<Chinese name used on the CDE query box, short form allowed>",
+  "ticker": "00000.HK",
+  "description": "English description, and whether the stock moves on readouts, approvals, or both. Tracking value starts with a heavy innovative drug (first-in-class or a large indication).",
+  "updated": "YYYY-MM-DD",
+  "pipeline_molecules": [
+    {
+      "name_cn": "<Chinese INN, kept as a search key>",
+      "name_en": "<INN>",
+      "code": "<code, e.g. AK112>",
+      "brand_cn": "<China brand, kept as a search key>",
+      "brand_eu": "<EU or US brand for EMA/FDA match, or empty>",
+      "type": "innovative | biosimilar | in-licensed",
+      "note": "English note: mechanism, indication, stage"
+    }
+  ],
+  "bd_partners": [
+    {
+      "name_cn": "<Chinese partner name if one exists, else the English name>",
+      "name_en": "<English partner name>",
+      "ticker": "<US ticker if the SEC 8-K source applies; otherwise leave empty>",
+      "region": "<territory in English>",
+      "deal": "<English deal summary and amount>"
+    }
+  ],
+  "watch_keywords": [
+    "<English INN>",
+    "<code>",
+    "<trial name, e.g. HARMONi>",
+    "<English brand>",
+    "<Chinese INN, kept so NMPA and CDE still hit>"
+  ]
+}

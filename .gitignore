@@ -1,0 +1,25 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Credentials and runtime state. The packages ship only the .env.example templates.
+.env
+.env.*
+!.env.example
+fosun.env
+.fintrust_session.json
+*_session.json
+
+# Generated reports and chart payloads
+artifacts/
+reports/

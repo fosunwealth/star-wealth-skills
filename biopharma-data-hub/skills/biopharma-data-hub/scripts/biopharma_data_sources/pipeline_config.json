@@ -1,0 +1,23 @@
+{
+  "_description": "Shared config for the biopharma sources. Change it here. Do not hard-code paths or timeouts in the scripts.",
+  "_last_updated": "2026-08-27",
+  "paths": {
+    "workspace_root": "/path/to/your/workspace"
+  },
+  "models": {},
+  "timeouts": {
+    "http_quick": 10,
+    "http_medium": 15,
+    "news_fetch": 30,
+    "data_fetch": 300,
+    "light": 120,
+    "llm_single": 180
+  },
+  "urls": {},
+  "alerts": {
+    "telegram_target": "YOUR_TELEGRAM_CHAT_ID",
+    "email_default": "YOUR_EMAIL@example.com",
+    "retry_count": 3,
+    "retry_interval": 600
+  }
+}

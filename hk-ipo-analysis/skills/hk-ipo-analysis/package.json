@@ -1,0 +1,8 @@
+{
+  "name": "hk-ipo-analysis-runtime",
+  "private": true,
+  "version": "4.12.17",
+  "dependencies": {
+    "echarts": "^6.1.0"
+  }
+}

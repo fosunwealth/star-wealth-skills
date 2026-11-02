@@ -1,0 +1,61 @@
+{
+  "name": "star-wealth-skills",
+  "displayName": "Star Wealth Skills",
+  "owner": {
+    "name": "Star Wealth"
+  },
+  "metadata": {
+    "description": "Six Star Wealth (Fosun Wealth) research and trading skills for Hong Kong and US markets.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "biopharma-data-hub",
+      "source": "biopharma-data-hub",
+      "description": "Public pipeline, approval, patent, and literature pulls for one biopharma name, plus upstream tracking. Objective only. No orders.",
+      "version": "1.1.5",
+      "license": "MIT",
+      "category": "finance"
+    },
+    {
+      "name": "biopharma-strategy",
+      "source": "biopharma-strategy",
+      "description": "A four-step biopharma note, or upstream tracking that keeps only material events. Objective only. No orders.",
+      "version": "1.1.5",
+      "license": "MIT",
+      "category": "finance"
+    },
+    {
+      "name": "fw-deep-research",
+      "source": "fw-deep-research",
+      "description": "One interactive HTML research report for a named Hong Kong or US stock: business, valuation, financials, and catalysts. Objective only. No orders.",
+      "version": "3.7.56",
+      "license": "MIT",
+      "category": "finance"
+    },
+    {
+      "name": "fw-trade-skill",
+      "source": "fw-trade-skill",
+      "description": "Hong Kong and US equity orders on paper or live, after an explicit confirmation. One gateway. No research reports.",
+      "version": "2.0.5",
+      "license": "MIT",
+      "category": "finance"
+    },
+    {
+      "name": "hk-ipo-analysis",
+      "source": "hk-ipo-analysis",
+      "description": "Hong Kong IPO list or one HTML subscription report: five-factor score and allotment tiers. Gate, then MCP, then one file. Objective only. No orders.",
+      "version": "4.12.17",
+      "license": "MIT",
+      "category": "finance"
+    },
+    {
+      "name": "tech-hardware-research",
+      "source": "tech-hardware-research",
+      "description": "One HTML research note for a tech-hardware name or vertical: supply chain, metrics, and traps. Objective only. No orders.",
+      "version": "2.5.3",
+      "license": "MIT",
+      "category": "finance"
+    }
+  ]
+}

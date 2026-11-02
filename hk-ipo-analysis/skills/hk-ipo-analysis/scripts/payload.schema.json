@@ -1,0 +1,914 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "hk-ipo-analysis payload",
+  "description": "The only contract from the source markdown to this payload. **The agent that read the source writes the whole object** (shot 1 `report` only drops the source text and the layer-1 truth on disk; shot 2 `render` reads and never parses prose). Each leaf has x-empty: ok means the source may omit it; warn means it should be present and payload_check will name it. Each leaf title says where in the source its value comes from. Source priority is in SKILL.md §2.1. Merge is payload_merge.merge_prefer. **Copy every numeric value verbatim from the source**: keep its decimals as written (the only conversion allowed is the unit named in that slot's `title`, e.g. values in 100 million), and leave the slot empty when the source does not give it — never compute, never substitute another slot, never pick a stray number out of the prose.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "symbol",
+    "stock_name",
+    "issue_params",
+    "ai_rating",
+    "subscription",
+    "sponsor",
+    "cornerstone",
+    "premium",
+    "valuation_module",
+    "fundamental",
+    "industry_module",
+    "market",
+    "lottery"
+  ],
+  "properties": {
+    "symbol": {
+      "type": "string",
+      "title": "Hong Kong code: hk plus 5 digits (from the command line / MCP truth)",
+      "x-empty": "ok"
+    },
+    "stock_name": {
+      "type": "string",
+      "title": "Short name. Prefer MCP truth; fall back to the issuer name in the source's title line.",
+      "x-empty": "ok"
+    },
+    "issue_params": {
+      "type": "object",
+      "title": "Offer terms",
+      "additionalProperties": false,
+      "required": [
+        "apply_start_date",
+        "apply_end_date",
+        "offer_price_min",
+        "offer_price_max",
+        "applyAmountMin",
+        "trade_date",
+        "currency",
+        "industry",
+        "valuation"
+      ],
+      "properties": {
+        "apply_start_date": {
+          "type": "string",
+          "title": "Offer start, YYYY-MM-DD. Take the paired dates in the source's 招股期 sentence (招股期自2026年9月28日起至10月6日止); the year comes from the report's as-of sentence. Leave it empty when the source is silent (layer 4 fills it).",
+          "x-empty": "warn"
+        },
+        "apply_end_date": {
+          "type": "string",
+          "title": "Offer end, YYYY-MM-DD. Same 招股期 sentence; roll into the next year across New Year. Empty when the source is silent.",
+          "x-empty": "warn"
+        },
+        "offer_price_min": {
+          "type": "string",
+          "title": "Offer price low, digits only, no currency. Only when the source states a low end or a range (按1.48-1.59港元计); a single price or a high-end-only offer leaves this empty — never grab a stray number out of the prose.",
+          "x-empty": "warn"
+        },
+        "offer_price_max": {
+          "type": "string",
+          "title": "Offer price high, digits only, no currency. Take the high end the source states (按上限1.59港元) or the top of its range; repeat the low when there is one price.",
+          "x-empty": "warn"
+        },
+        "applyAmountMin": {
+          "type": "string",
+          "title": "One-lot entry fee in HKD, integer text. The digits in the source's 入场费约 3,180 港元.",
+          "x-empty": "warn"
+        },
+        "trade_date": {
+          "type": "string",
+          "title": "Listing day, YYYY-MM-DD. The source's 上市日 (or 预计上市日). Empty when the source is silent (layer 4 fills it).",
+          "x-empty": "ok"
+        },
+        "currency": {
+          "type": "string",
+          "title": "Currency, HKD or USD. Prefer MCP truth; otherwise read 港元 / 美元 in the source.",
+          "x-empty": "warn"
+        },
+        "industry": {
+          "type": "string",
+          "title": "Sector name. Copy module 8 of the filing. Do not reclassify it.",
+          "x-empty": "warn"
+        },
+        "valuation": {
+          "type": "string",
+          "title": "Valuation basis, copied from the filing. Empty if the filing has none.",
+          "x-empty": "ok"
+        }
+      }
+    },
+    "ai_rating": {
+      "type": "object",
+      "title": "AI rating",
+      "additionalProperties": false,
+      "required": [
+        "rating_value",
+        "highlight",
+        "subscription_score",
+        "sentiment_score",
+        "industry_score",
+        "fundamental_score",
+        "valuation_score",
+        "interpretation"
+      ],
+      "properties": {
+        "rating_value": {
+          "type": "string",
+          "title": "Overall stars, 0-5, one decimal as text. The star count in the source's module-1 AI评级 line, or the N in Phase 3.5 综合评级 N/5.0.",
+          "x-empty": "warn"
+        },
+        "highlight": {
+          "type": "string",
+          "title": "One-line highlight. The text after the colon in the source's module-1 一句话亮点.",
+          "x-empty": "warn"
+        },
+        "subscription_score": {
+          "type": "string",
+          "title": "Subscription score, 0-5 as text. Copy the 雷达图占位符 line 认购倍数：N分 verbatim (2.3 stays 2.3). If the source has no such line, leave it empty — never rescale the /20 subtotal",
+          "x-empty": "warn"
+        },
+        "sentiment_score": {
+          "type": "string",
+          "title": "Sentiment score, 0-5 as text. Copy the 资金与情绪博弈：N分 line verbatim; empty if absent, never rescale",
+          "x-empty": "warn"
+        },
+        "industry_score": {
+          "type": "string",
+          "title": "Industry score, 0-5 as text. Copy the 行业赛道：N分 line verbatim; empty if absent, never rescale",
+          "x-empty": "warn"
+        },
+        "fundamental_score": {
+          "type": "string",
+          "title": "Fundamentals score, 0-5 as text. Copy the 公司基本面：N分 line verbatim; empty if absent, never rescale",
+          "x-empty": "warn"
+        },
+        "valuation_score": {
+          "type": "string",
+          "title": "Valuation-margin score, 0-5 as text. Copy the 估值与安全边际：N分 line verbatim; empty if absent, never rescale",
+          "x-empty": "warn"
+        },
+        "interpretation": {
+          "type": "array",
+          "title": "Core points, one paragraph each. The source's module-1 核心逻辑（分析）, one paragraph per item.",
+          "items": {
+            "$ref": "#/$defs/paragraph"
+          }
+        }
+      }
+    },
+    "subscription": {
+      "type": "object",
+      "title": "Oversubscription",
+      "additionalProperties": false,
+      "required": [
+        "rate_over",
+        "interpretation",
+        "chart_data"
+      ],
+      "properties": {
+        "rate_over": {
+          "type": "string",
+          "title": "Oversubscription multiple, digits as text. The 超额认购倍数 in the source's module-2 数据卡片, minus the 倍 (3.91).",
+          "x-empty": "warn"
+        },
+        "interpretation": {
+          "type": "array",
+          "title": "Commentary. The source's module-2 分析 text, one paragraph per item (split where the source splits).",
+          "items": {
+            "$ref": "#/$defs/paragraph"
+          }
+        },
+        "chart_data": {
+          "type": "object",
+          "title": "Subscription trend",
+          "additionalProperties": false,
+          "x-same-length": [
+            [
+              "growthValues",
+              "growthDateTime"
+            ]
+          ],
+          "required": [
+            "growthValues",
+            "growthDateTime",
+            "totalMarginFrozenFunds",
+            "publicOfferFundraisingAmount",
+            "publicOfferOversubscriptionMultiple"
+          ],
+          "properties": {
+            "growthValues": {
+              "type": "array",
+              "title": "Oversubscription multiple at each point in the offer window. The turning points the source gives in module 2's 面积折线图占位符 (one point → one value).",
+              "items": {
+                "type": "number"
+              },
+              "x-empty": "warn"
+            },
+            "growthDateTime": {
+              "type": "array",
+              "title": "Timestamps aligned one-to-one with growthValues, copied from the same module-2 placeholder.",
+              "items": {
+                "type": "string"
+              },
+              "x-empty": "ok"
+            },
+            "totalMarginFrozenFunds": {
+              "type": "string",
+              "title": "The 累计孖展冻资总额 from the source's module-2 数据卡片, verbatim.",
+              "x-empty": "warn"
+            },
+            "publicOfferFundraisingAmount": {
+              "type": "string",
+              "title": "The 公开发售集资额 from the source's module-2 数据卡片, verbatim.",
+              "x-empty": "warn"
+            },
+            "publicOfferOversubscriptionMultiple": {
+              "type": "string",
+              "title": "The 超额认购倍数 from the source's module-2 数据卡片, verbatim.",
+              "x-empty": "warn"
+            }
+          }
+        }
+      }
+    },
+    "sponsor": {
+      "type": "object",
+      "title": "Sponsors",
+      "additionalProperties": false,
+      "required": [
+        "interpretation",
+        "chart_data"
+      ],
+      "properties": {
+        "interpretation": {
+          "type": "array",
+          "title": "One paragraph per sponsor, from the source's module-3 analysis (one sponsor per paragraph). label is the full name; text is the comment, then the track record: (N deals in the last 2 years, first-day up probability X%, average first-day gain Y%).",
+          "items": {
+            "$ref": "#/$defs/paragraph"
+          }
+        },
+        "chart_data": {
+          "type": "object",
+          "title": "First-day up-probability bars",
+          "additionalProperties": false,
+          "x-same-length": [
+            [
+              "yAxisLabel",
+              "sponsorName"
+            ]
+          ],
+          "required": [
+            "yAxisLabel",
+            "sponsorName",
+            "sponsorGreenshoeScore",
+            "sponsorGreenshoeMaxScore"
+          ],
+          "properties": {
+            "yAxisLabel": {
+              "type": "array",
+              "title": "Each sponsor's first-day up probability over 2 years, as a percent number. Take each line of the source's module-3 柱状图占位符.",
+              "items": {
+                "type": "number"
+              },
+              "x-empty": "warn"
+            },
+            "sponsorName": {
+              "type": "array",
+              "title": "Sponsor names, aligned with yAxisLabel. The company name on each line of the source's module-3 柱状图占位符.",
+              "items": {
+                "type": "string"
+              },
+              "x-empty": "warn"
+            },
+            "sponsorGreenshoeScore": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "title": "Greenshoe score. null when the source gives no score — do not invent one.",
+              "x-empty": "ok"
+            },
+            "sponsorGreenshoeMaxScore": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "title": "Full marks for that score. Present only when the score is present.",
+              "x-empty": "ok"
+            }
+          }
+        }
+      }
+    },
+    "cornerstone": {
+      "type": "object",
+      "title": "Cornerstone investors",
+      "additionalProperties": false,
+      "required": [
+        "interpretation",
+        "chart_data"
+      ],
+      "properties": {
+        "interpretation": {
+          "type": "array",
+          "title": "Commentary. The source's module-4 分析 text.",
+          "items": {
+            "$ref": "#/$defs/paragraph"
+          }
+        },
+        "chart_data": {
+          "type": "object",
+          "title": "Cornerstone share",
+          "additionalProperties": false,
+          "required": [
+            "lockupPeriod",
+            "allocationRatio",
+            "cornerstoneCount",
+            "investmentAmount",
+            "cornerstoneQualityScore",
+            "cornerstoneQualityMaxScore"
+          ],
+          "properties": {
+            "lockupPeriod": {
+              "type": "string",
+              "title": "Lock-up, copied from the filing, e.g. 6 months",
+              "x-empty": "warn"
+            },
+            "allocationRatio": {
+              "type": "number",
+              "title": "Cornerstone share of the global offer, percent number. The 认购占全球发售 in the source's module-4 数据卡片 (46.52).",
+              "x-empty": "warn"
+            },
+            "cornerstoneCount": {
+              "type": "integer",
+              "title": "Number of cornerstone investors. The 基石家数 in the source's module-4 数据卡片.",
+              "x-empty": "warn"
+            },
+            "investmentAmount": {
+              "type": "string",
+              "title": "Cornerstone amount, copied from the filing",
+              "x-empty": "warn"
+            },
+            "cornerstoneQualityScore": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "title": "Cornerstone quality score. null when the source has no anchor (the block is then omitted).",
+              "x-empty": "ok"
+            },
+            "cornerstoneQualityMaxScore": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "title": "Full marks for cornerstone quality. Present only when the score is present.",
+              "x-empty": "ok"
+            }
+          }
+        }
+      }
+    },
+    "premium": {
+      "type": "object",
+      "title": "Cross-market premium",
+      "additionalProperties": false,
+      "required": [
+        "interpretation",
+        "chart_data"
+      ],
+      "properties": {
+        "interpretation": {
+          "type": "array",
+          "title": "Commentary. When it does not apply, one sentence is enough — a Hong Kong-only deal has no cross-market anchor (source module 5).",
+          "items": {
+            "$ref": "#/$defs/paragraph"
+          }
+        },
+        "chart_data": {
+          "type": "object",
+          "title": "A/H premium",
+          "additionalProperties": false,
+          "required": [
+            "isApplicable",
+            "relatedStockCode",
+            "hShareFinalOfferPrice",
+            "hShareDiscountVsAShare",
+            "aSharePriceConvertedToHkd",
+            "aSharePriceLastTradingDayBeforeListing",
+            "aShareTtmPe"
+          ],
+          "properties": {
+            "isApplicable": {
+              "type": "boolean",
+              "title": "true when there is a cross-listed comparable; false for a Hong Kong-only deal (source module 5 says 纯港股 / no A-share or US anchor). Every other premium slot is then empty or 0.",
+              "x-empty": "ok"
+            },
+            "relatedStockCode": {
+              "type": "string",
+              "title": "Related A-share or US code — from the source's module-5 A/H anchor; leave it empty when the deal is Hong Kong-only.",
+              "x-empty": "ok"
+            },
+            "hShareFinalOfferPrice": {
+              "type": "number",
+              "title": "Final H-share offer price — from the source's module-5 A/H anchor; leave it empty when the deal is Hong Kong-only.",
+              "x-empty": "ok"
+            },
+            "hShareDiscountVsAShare": {
+              "type": "string",
+              "title": "H versus A premium or discount, copied from the filing — from the source's module-5 A/H anchor; leave it empty when the deal is Hong Kong-only.",
+              "x-empty": "ok"
+            },
+            "aSharePriceConvertedToHkd": {
+              "type": "number",
+              "title": "A-share price in HKD — from the source's module-5 A/H anchor; leave it empty when the deal is Hong Kong-only.",
+              "x-empty": "ok"
+            },
+            "aSharePriceLastTradingDayBeforeListing": {
+              "type": "number",
+              "title": "A-share close on the session before listing — from the source's module-5 A/H anchor; leave it empty when the deal is Hong Kong-only.",
+              "x-empty": "ok"
+            },
+            "aShareTtmPe": {
+              "type": "string",
+              "title": "A-share or US TTM multiple, copied from the filing — from the source's module-5 A/H anchor; leave it empty when the deal is Hong Kong-only.",
+              "x-empty": "ok"
+            }
+          }
+        }
+      }
+    },
+    "valuation_module": {
+      "type": "object",
+      "title": "Valuation",
+      "additionalProperties": false,
+      "required": [
+        "interpretation",
+        "chart_data"
+      ],
+      "properties": {
+        "interpretation": {
+          "type": "array",
+          "title": "Commentary. The source's module-6 分析 text.",
+          "items": {
+            "$ref": "#/$defs/paragraph"
+          }
+        },
+        "chart_data": {
+          "type": "object",
+          "title": "Valuation level",
+          "additionalProperties": false,
+          "required": [
+            "valuationType",
+            "hkValuation",
+            "industryAvg",
+            "totalMarketCap",
+            "aShareTtm"
+          ],
+          "properties": {
+            "valuationType": {
+              "type": "string",
+              "title": "Basis, e.g. PE or PS. The 估值类型 in the source's module-6 数据卡片.",
+              "x-empty": "warn"
+            },
+            "hkValuation": {
+              "type": "number",
+              "title": "This offer's multiple. The H股本次发行估值倍数 in the source's module-6 数据卡片 (12.3).",
+              "x-empty": "warn"
+            },
+            "industryAvg": {
+              "type": "number",
+              "title": "Peer average multiple. The 行业可比公司平均估值倍数 in the source's module-6 数据卡片; 0 when peers do not apply.",
+              "x-empty": "ok"
+            },
+            "totalMarketCap": {
+              "type": "string",
+              "title": "H-share market cap at the offer, copied from the filing",
+              "x-empty": "warn"
+            },
+            "aShareTtm": {
+              "type": "number",
+              "title": "A-share or US TTM multiple; 0 when it does not apply (source module 6).",
+              "x-empty": "ok"
+            }
+          }
+        }
+      }
+    },
+    "fundamental": {
+      "type": "object",
+      "title": "Fundamentals",
+      "additionalProperties": false,
+      "required": [
+        "interpretation",
+        "chart_data"
+      ],
+      "properties": {
+        "interpretation": {
+          "type": "array",
+          "title": "Commentary. One item per analysis point in module 7. label is the filing's own heading.",
+          "items": {
+            "$ref": "#/$defs/paragraph"
+          }
+        },
+        "chart_data": {
+          "type": "object",
+          "title": "Chart: net profit, gross margin, revenue",
+          "additionalProperties": false,
+          "x-same-length": [
+            [
+              "growthYears",
+              "growthValues"
+            ],
+            [
+              "netProfitYears",
+              "netProfitValues"
+            ],
+            [
+              "grossProfitMarginYears",
+              "grossProfitMarginValues"
+            ],
+            [
+              "netProfitMarginYears",
+              "netProfitMarginValues"
+            ],
+            [
+              "roeYears",
+              "roeValues"
+            ],
+            [
+              "roaYears",
+              "roaValues"
+            ],
+            [
+              "pbYears",
+              "pbValues"
+            ]
+          ],
+          "required": [
+            "cagr",
+            "currency",
+            "growthYears",
+            "growthValues",
+            "netProfitYears",
+            "netProfitValues",
+            "netProfitMarginYears",
+            "netProfitMarginValues",
+            "grossProfitMarginYears",
+            "grossProfitMarginValues",
+            "roeYears",
+            "roeValues",
+            "roaYears",
+            "roaValues",
+            "pbYears",
+            "pbValues",
+            "hasGreenshoe"
+          ],
+          "properties": {
+            "cagr": {
+              "type": "string",
+              "title": "Revenue CAGR from the filing, e.g. 40.4%",
+              "x-empty": "ok"
+            },
+            "currency": {
+              "type": "string",
+              "title": "Statement currency: CNY, USD, or HKD. The unit line of the source's module-7 finance table (人民币千元 → CNY).",
+              "x-empty": "warn"
+            },
+            "growthYears": {
+              "type": "array",
+              "title": "Revenue year labels, copied from the filing (e.g. 2023 or 2026 H1)",
+              "items": {
+                "type": "string"
+              },
+              "x-empty": "warn"
+            },
+            "growthValues": {
+              "type": "array",
+              "title": "Revenue, in 100 million. The 营收 row of the source's module-7 折线图占位符, converted to 100 million.",
+              "items": {
+                "type": "number"
+              },
+              "x-empty": "warn"
+            },
+            "netProfitYears": {
+              "type": "array",
+              "title": "Net-profit year labels, copied from the same module-7 净利 row.",
+              "items": {
+                "type": "string"
+              },
+              "x-empty": "warn"
+            },
+            "netProfitValues": {
+              "type": "array",
+              "title": "Net profit, in 100 million (keep the minus sign when negative), from the same 净利 row.",
+              "items": {
+                "type": "number"
+              },
+              "x-empty": "warn"
+            },
+            "netProfitMarginYears": {
+              "type": "array",
+              "title": "Net-margin year labels; empty when the source gives none (module-7 净利率 row if present).",
+              "items": {
+                "type": "string"
+              },
+              "x-empty": "ok"
+            },
+            "netProfitMarginValues": {
+              "type": "array",
+              "title": "Net margin, from the same module-7 净利率 row; empty when the source gives none.",
+              "items": {
+                "type": "number"
+              },
+              "x-empty": "ok"
+            },
+            "grossProfitMarginYears": {
+              "type": "array",
+              "title": "Gross-margin year labels, from the module-7 毛利率 row.",
+              "items": {
+                "type": "string"
+              },
+              "x-empty": "warn"
+            },
+            "grossProfitMarginValues": {
+              "type": "array",
+              "title": "Gross margin, percent number, from the same module-7 毛利率 row.",
+              "items": {
+                "type": "number"
+              },
+              "x-empty": "warn"
+            },
+            "roeYears": {
+              "type": "array",
+              "title": "ROE year labels. Empty if the filing has none. — from the source's module-7 statements; empty when the source gives none.",
+              "items": {
+                "type": "string"
+              },
+              "x-empty": "ok"
+            },
+            "roeValues": {
+              "type": "array",
+              "title": "ROE. Empty if the filing has none. — from the source's module-7 statements; empty when the source gives none.",
+              "items": {
+                "type": "number"
+              },
+              "x-empty": "ok"
+            },
+            "roaYears": {
+              "type": "array",
+              "title": "ROA year labels. Empty if the filing has none. — from the source's module-7 statements; empty when the source gives none.",
+              "items": {
+                "type": "string"
+              },
+              "x-empty": "ok"
+            },
+            "roaValues": {
+              "type": "array",
+              "title": "ROA. Empty if the filing has none. — from the source's module-7 statements; empty when the source gives none.",
+              "items": {
+                "type": "number"
+              },
+              "x-empty": "ok"
+            },
+            "pbYears": {
+              "type": "array",
+              "title": "PB year labels. Empty if the filing has none. — from the source's module-7 statements; empty when the source gives none.",
+              "items": {
+                "type": "string"
+              },
+              "x-empty": "ok"
+            },
+            "pbValues": {
+              "type": "array",
+              "title": "PB. Empty if the filing has none. — from the source's module-7 statements; empty when the source gives none.",
+              "items": {
+                "type": "number"
+              },
+              "x-empty": "ok"
+            },
+            "hasGreenshoe": {
+              "type": "boolean",
+              "title": "true when the offer carries a greenshoe. The source saying 无绿鞋 / 无稳价人 means false.",
+              "x-empty": "warn"
+            }
+          }
+        }
+      }
+    },
+    "industry_module": {
+      "type": "object",
+      "title": "Industry",
+      "additionalProperties": false,
+      "required": [
+        "interpretation",
+        "chart_data"
+      ],
+      "properties": {
+        "interpretation": {
+          "type": "array",
+          "title": "Commentary. The source's module-8 分析 text.",
+          "items": {
+            "$ref": "#/$defs/paragraph"
+          }
+        },
+        "chart_data": {
+          "type": "object",
+          "title": "Sector",
+          "additionalProperties": false,
+          "required": [
+            "sectorName"
+          ],
+          "properties": {
+            "sectorName": {
+              "type": "string",
+              "title": "Sector name. The source's module-8 数据卡片首行, verbatim (do not classify it yourself).",
+              "x-empty": "warn"
+            }
+          }
+        }
+      }
+    },
+    "market": {
+      "type": "object",
+      "title": "Market",
+      "additionalProperties": false,
+      "required": [
+        "interpretation",
+        "chart_data"
+      ],
+      "properties": {
+        "interpretation": {
+          "type": "array",
+          "title": "Commentary. The source's module-9 分析 text.",
+          "items": {
+            "$ref": "#/$defs/paragraph"
+          }
+        },
+        "chart_data": {
+          "type": "object",
+          "title": "Index levels",
+          "additionalProperties": false,
+          "required": [
+            "hkHSIAnalysis",
+            "hkHSTECHAnalysis"
+          ],
+          "properties": {
+            "hkHSIAnalysis": {
+              "type": "string",
+              "title": "Hang Seng last close, digits only. The 恒生指数最近收盘点位 in the source's module-9 折线图占位符 (the renderer already names the index).",
+              "x-empty": "warn"
+            },
+            "hkHSTECHAnalysis": {
+              "type": "string",
+              "title": "Hang Seng TECH last close, digits only. The same module-9 line; empty when the source gives none.",
+              "x-empty": "ok"
+            }
+          }
+        }
+      }
+    },
+    "lottery": {
+      "type": "object",
+      "title": "Allotment",
+      "additionalProperties": false,
+      "required": [
+        "oneLotWinRate",
+        "subscribeLots",
+        "summaryRows",
+        "detailRows"
+      ],
+      "properties": {
+        "oneLotWinRate": {
+          "type": "string",
+          "title": "The 一手中签率 from the source's 中签预测速览, verbatim (60.0%).",
+          "x-empty": "warn"
+        },
+        "subscribeLots": {
+          "type": "integer",
+          "title": "The 预计中1手需申购 from the source's 中签预测速览, as an integer.",
+          "x-empty": "ok"
+        },
+        "summaryRows": {
+          "type": "array",
+          "title": "Band table: One lot, Group A tail, Group B head, and the rest — take the four bold rows of the source's 不同申购档位预估 table",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "groupKey",
+              "groupName",
+              "subscribeLots",
+              "expectedWinLots"
+            ],
+            "properties": {
+              "groupKey": {
+                "type": "string",
+                "enum": [
+                  "oneLot",
+                  "groupA",
+                  "groupATail",
+                  "groupB",
+                  "groupBHead",
+                  "topHammer"
+                ],
+                "title": "Slot key, one of the six: oneLot / groupA / groupATail / groupB / groupBHead / topHammer (the renderer colours the tag by it). Take the four bold rows of the source's 不同申购档位预估 table.",
+                "x-empty": "warn"
+              },
+              "groupName": {
+                "type": "string",
+                "title": "Slot name for those same four bold rows.",
+                "x-empty": "warn"
+              },
+              "subscribeLots": {
+                "type": "string",
+                "title": "The 申购手数 column of those same four bold rows.",
+                "x-empty": "warn"
+              },
+              "expectedWinLots": {
+                "type": "string",
+                "title": "The 预计中签手数 column of those same four bold rows.",
+                "x-empty": "warn"
+              }
+            }
+          }
+        },
+        "detailRows": {
+          "type": "array",
+          "title": "Lot-by-lot rows — the full 不同申购档位预估 table of the source, row by row",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "groupKey",
+              "groupName",
+              "subscribeLots",
+              "expectedWinLots",
+              "expectedWinRate",
+              "predictedOneLotWinRate"
+            ],
+            "properties": {
+              "groupKey": {
+                "type": "string",
+                "enum": [
+                  "oneLot",
+                  "groupA",
+                  "groupATail",
+                  "groupB",
+                  "groupBHead",
+                  "topHammer"
+                ],
+                "title": "Slot key, same six as summaryRows; decide row by row from the source's 不同申购档位预估 table.",
+                "x-empty": "warn"
+              },
+              "groupName": {
+                "type": "string",
+                "title": "Slot name, row by row from the same table.",
+                "x-empty": "warn"
+              },
+              "subscribeLots": {
+                "type": "string",
+                "title": "The 申购手数 column of the same table, row by row.",
+                "x-empty": "warn"
+              },
+              "expectedWinLots": {
+                "type": "string",
+                "title": "The 预计中签手数 column of the same table, row by row.",
+                "x-empty": "warn"
+              },
+              "expectedWinRate": {
+                "type": "string",
+                "title": "The 平均每手中签率 column of the same table, row by row.",
+                "x-empty": "warn"
+              },
+              "predictedOneLotWinRate": {
+                "type": "string",
+                "title": "The 至少中一手概率 column of the same table, row by row.",
+                "x-empty": "ok"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "paragraph": {
+      "type": "object",
+      "title": "One commentary paragraph",
+      "additionalProperties": false,
+      "required": [
+        "label",
+        "text"
+      ],
+      "properties": {
+        "label": {
+          "type": "string",
+          "title": "Lead-in. The filing's label before the colon. Empty if there is no label.",
+          "x-empty": "ok"
+        },
+        "text": {
+          "type": "string",
+          "title": "Body. The filing's text after the colon. Keep the filing's wording.",
+          "x-empty": "warn"
+        }
+      }
+    }
+  }
+}

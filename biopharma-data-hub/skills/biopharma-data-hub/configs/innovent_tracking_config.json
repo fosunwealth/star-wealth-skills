@@ -1,0 +1,79 @@
+{
+  "company": "信达生物",
+  "company_en": "Innovent",
+  "cde_company": "信达生物",
+  "ticker": "01801.HK",
+  "description": "",
+  "updated": "2026-08-20",
+  "pipeline_molecules": [
+    {
+      "name_cn": "信迪利单抗",
+      "name_en": "sintilimab",
+      "code": "IBI308",
+      "brand_cn": "",
+      "type": "innovative",
+      "note": "PD-1"
+    },
+    {
+      "name_cn": "玛仕度肽",
+      "name_en": "mazdutide",
+      "code": "IBI362",
+      "brand_cn": "",
+      "type": "innovative",
+      "note": "GLP-1R/GCGR 双激动剂"
+    },
+    {
+      "name_cn": "匹康奇拜单抗",
+      "name_en": "picankibart",
+      "code": "IBI112",
+      "brand_cn": "",
+      "type": "innovative",
+      "note": "IL-23p19"
+    }
+  ],
+  "bd_partners": [
+    {
+      "name_cn": "礼来",
+      "name_en": "Eli Lilly",
+      "ticker": "LLY",
+      "region": "",
+      "deal": ""
+    },
+    {
+      "name_cn": "辉瑞",
+      "name_en": "Pfizer",
+      "ticker": "PFE",
+      "region": "",
+      "deal": ""
+    },
+    {
+      "name_cn": "武田",
+      "name_en": "Takeda",
+      "ticker": "TAK",
+      "region": "",
+      "deal": ""
+    },
+    {
+      "name_cn": "赛诺菲",
+      "name_en": "Sanofi",
+      "ticker": "SNY",
+      "region": "",
+      "deal": ""
+    },
+    {
+      "name_cn": "Incyte",
+      "name_en": "Incyte",
+      "ticker": "INCY",
+      "region": "",
+      "deal": ""
+    }
+  ],
+  "watch_keywords": [
+    "mazdutide",
+    "sintilimab",
+    "picankibart",
+    "IBI363",
+    "IBI362",
+    "IBI112"
+  ]
+}

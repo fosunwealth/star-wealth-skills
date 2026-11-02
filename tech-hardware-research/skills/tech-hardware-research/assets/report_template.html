@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{TITLE}} · {{SUBTITLE}}</title>
+<!--
+  ════════════════════════════════════════════════════════════════════
+  tech-hardware-research · report HTML template
+  ────────────────────────────────────────────────────────────────────
+  Copy this file, replace the placeholders, and fill each section from the report skeleton in SKILL.md.
+  Hard rules:
+    · One file. No CDN, iframe, or external CSS, JS, or image.
+    · Charts are inline SVG. No external chart library.
+    · Every fact carries <span class="src">source</span>.
+    · Up = red (--up), down = green (--down).
+    · Close each section with <div class="verdict">.
+  ════════════════════════════════════════════════════════════════════
+-->
+<style>
+:root{
+  --ink:#22303c; --ink2:#44586a; --ink3:#7b8b99; --ink4:#a8b3bd;
+  --line:#dfe6ec; --soft:#eef3f7; --bg:#ffffff; --bg2:#f7fafc; --bg3:#f0f5f9;
+  --up:#b8453a; --down:#2f8f5b; --flat:#8a8a8a;
+  --brand:#1a5276; --brand2:#2e86c1; --brand3:#cfe2ee;
+  --warn:#c8791a; --bad:#b03a3a; --ok:#1e8e5a;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+  font-size:15px;line-height:1.78;-webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding:0 30px 88px}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+
+/* masthead */
+header{padding:56px 0 0}
+.masthead{text-align:center;padding-bottom:26px;border-bottom:1px solid var(--line);position:relative}
+.masthead::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;background:var(--brand3);opacity:.55}
+.eyebrow{font-size:11.5px;letter-spacing:.34em;color:var(--brand2);text-transform:uppercase;margin-bottom:14px}
+h1{font-size:31px;line-height:1.32;margin:0 0 12px;font-weight:600;color:var(--brand);letter-spacing:.01em}
+.subline{font-size:13px;color:var(--ink3);letter-spacing:.05em}
+.subline b{color:var(--ink2);font-weight:600}
+
+/* judgment */
+.lede{margin:38px 0 0;padding:26px 30px;background:linear-gradient(135deg,#f4f9fc,#eaf3f9);
+  border:1px solid var(--brand3);border-left:4px solid var(--brand2);border-radius:4px}
+.lede .label{font-size:11.5px;letter-spacing:.22em;color:var(--brand2);margin-bottom:10px;font-weight:600}
+.lede p{margin:0;font-size:16px;line-height:1.9;color:var(--ink)}
+.lede .contra{margin-top:14px;padding-top:14px;border-top:1px dashed var(--brand3);font-size:14.5px;color:var(--ink2)}
+.lede .contra b{color:var(--warn)}
+
+/* contents */
+.toc{margin:30px 0 0;padding:18px 22px;background:var(--bg2);border:1px solid var(--soft);border-radius:4px}
+.toc .label{font-size:11.5px;letter-spacing:.2em;color:var(--ink3);margin-bottom:10px}
+.toc ol{margin:0;padding-left:20px;columns:2;column-gap:34px}
+.toc li{margin:4px 0;font-size:13.5px}
+.toc a{color:var(--ink2);text-decoration:none;border-bottom:1px solid transparent}
+.toc a:hover{border-bottom-color:var(--brand2);color:var(--brand)}
+
+/* section */
+section{margin-top:54px;scroll-margin-top:20px}
+.sec-head{display:flex;align-items:baseline;gap:12px;padding-bottom:12px;
+  border-bottom:1px solid var(--line);margin-bottom:24px}
+.sec-idx{flex:none;font-size:11.5px;color:var(--brand2);letter-spacing:.14em;
+  border:1px solid var(--brand3);border-radius:2px;padding:2px 8px;transform:translateY(-2px)}
+.sec-title{font-size:19px;font-weight:600;color:var(--brand);margin:0;letter-spacing:.03em}
+.sec-note{margin-left:auto;font-size:11.5px;color:var(--ink4);letter-spacing:.04em;text-align:right}
+h3{font-size:15.5px;font-weight:600;color:var(--ink);margin:26px 0 10px;letter-spacing:.02em}
+p{margin:11px 0}
+strong{color:var(--ink);font-weight:600}
+
+/* table */
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13.5px}
+th{background:var(--brand);color:#fff;text-align:left;padding:9px 11px;font-weight:600;white-space:nowrap}
+td{padding:8px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:#fafcfe}
+td.r,th.r{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:1px;
+  background:var(--soft);border:1px solid var(--soft);margin:18px 0}
+.card{background:var(--bg);padding:17px 18px 15px}
+.card .name{font-size:12px;color:var(--ink3);letter-spacing:.05em;margin-bottom:9px}
+.card .val{font-size:24px;font-weight:600;color:var(--ink);letter-spacing:-.01em;line-height:1.15}
+.card .foot{display:flex;align-items:center;gap:8px;margin-top:9px;font-size:12px;color:var(--ink3)}
+.up{color:var(--up)}.down{color:var(--down)}.flat{color:var(--flat)}
+
+/* source */
+.src{font-size:11.5px;color:var(--ink4);letter-spacing:.02em}
+.src::before{content:"Source: ";color:var(--ink4)}
+.timing{display:inline-block;font-size:11px;padding:1px 6px;border-radius:2px;
+  background:var(--bg3);color:var(--ink3);border:1px solid var(--line);white-space:nowrap}
+
+/* verdict */
+.verdict{margin:20px 0 0;padding:15px 20px;background:var(--bg2);
+  border:1px solid var(--soft);border-left:3px solid var(--brand2);border-radius:3px;font-size:14px}
+.verdict .label{font-size:11.5px;letter-spacing:.18em;color:var(--brand2);margin-bottom:6px;font-weight:600}
+
+/* callout */
+.callout{margin:18px 0;padding:15px 20px;border-radius:4px;font-size:14px;border:1px solid var(--line);background:var(--bg2)}
+.callout.warn{background:#fdf8f0;border-color:#f0dcbb;border-left:4px solid var(--warn)}
+.callout.bad{background:#fdf2f2;border-color:#f0cfcf;border-left:4px solid var(--bad)}
+.callout.ok{background:#f1f9f4;border-color:#c9e6d6;border-left:4px solid var(--ok)}
+.callout .t{font-weight:600;margin-bottom:5px}
+
+/* chart */
+figure{margin:22px 0;padding:0}
+figure svg{display:block;width:100%;height:auto}
+figcaption{margin-top:9px;font-size:12px;color:var(--ink3);text-align:center}
+.bar-wrap{display:grid;grid-template-columns:auto 1fr auto;gap:6px 12px;align-items:center;
+  font-size:13px;margin:16px 0}
+.bar-wrap .lbl{color:var(--ink2);white-space:nowrap}
+.bar-wrap .bar{height:16px;background:var(--bg3);border-radius:2px;overflow:hidden;position:relative}
+.bar-wrap .bar i{display:block;height:100%;background:var(--brand2);border-radius:2px}
+.bar-wrap .bar i.up{background:var(--up)}.bar-wrap .bar i.down{background:var(--down)}
+.bar-wrap .v{font-variant-numeric:tabular-nums;color:var(--ink);white-space:nowrap}
+
+/* list */
+ul,ol{margin:11px 0;padding-left:23px}
+li{margin:5px 0}
+.check{list-style:none;padding-left:0}
+.check li{padding-left:26px;position:relative}
+.check li::before{content:"☐";position:absolute;left:0;color:var(--ink3)}
+
+/* footer */
+footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);color:var(--ink3);font-size:12px}
+footer .row{margin:5px 0}
+.tag{display:inline-block;padding:1px 7px;border-radius:9px;font-size:11px;font-weight:600;white-space:nowrap}
+.t-ok{background:#e3f5eb;color:#136b43}.t-warn{background:#fdf1dc;color:#8a5510}
+.t-bad{background:#fbe6e6;color:#962e2e}.t-info{background:#e6f0f8;color:#1a5276}
+
+@media print{body{font-size:12pt}.toc{display:none}section{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="masthead">
+    <div class="eyebrow">Tech Hardware Research</div>
+    <h1>{{name}} research note</h1>
+    <div class="subline">
+      As of <b>{{YYYY-MM-DD}}</b> | Link <b>{{chain step}}</b> | Data through <b>{{date}}</b> | Completion <b>{{100%}}</b>
+    </div>
+  </div>
+</header>
+
+<!-- one-sentence judgment, with the main tension -->
+<div class="lede">
+  <div class="label">JUDGMENT</div>
+  <p>{{a judgment, not a description}}</p>
+  <div class="contra"><b>Tension ({{D1|D2|D3|D4}}):</b>{{what is tearing, or what contradicts the obvious}}</div>
+</div>
+
+<!-- contents -->
+<nav class="toc">
+  <div class="label">CONTENTS</div>
+  <ol>
+    <li><a href="#s1">Cycle position</a></li>
+    <li><a href="#s2">Chain and who keeps the profit</a></li>
+    <li><a href="#s3">Structure and the company</a></li>
+    <li><a href="#s4">Metrics and the current reading</a></li>
+    <li><a href="#s5">Consensus and the gap</a></li>
+    <li><a href="#s6">Pitfall review</a></li>
+    <li><a href="#s7">What to watch, and what would prove this wrong</a></li>
+    <li><a href="#appendix">Sources and definitions</a></li>
+  </ol>
+</nav>
+
+<!-- ══ 1 ══ -->
+<section id="s1">
+  <div class="sec-head">
+    <span class="sec-idx">01</span>
+    <h2 class="sec-title">Cycle position</h2>
+    <span class="sec-note">{{link}}</span>
+  </div>
+  <!-- metric cards -->
+  <div class="grid">
+    <div class="card">
+      <div class="name">{{metric}}</div>
+      <div class="val num {{up|down|flat}}">{{value}}</div>
+      <div class="foot"><span class="timing">{{as of}}</span><span class="src">{{source}}</span></div>
+    </div>
+    <!-- copy the card -->
+  </div>
+  <!-- inline SVG or a CSS bar -->
+  <div class="bar-wrap">
+    <span class="lbl">{{item}}</span>
+    <span class="bar"><i style="width:{{pct}}%"></i></span>
+    <span class="v num">{{value}}</span>
+  </div>
+  <div class="verdict"><div class="label">JUDGMENT</div>{{...}}</div>
+</section>
+
+<!-- sections 2-7 follow the same shape; fill them from the skeleton in SKILL.md -->
+
+<!-- appendix -->
+<section id="appendix">
+  <div class="sec-head"><span class="sec-idx">A</span><h2 class="sec-title">Sources and definitions</h2></div>
+  <table>
+    <tr><th>Figure</th><th>Source</th><th class="r">Date</th></tr>
+    <!-- one row per figure -->
+  </table>
+  <h3>Unavailable (a reason, not a skipped search)</h3>
+  <ul>
+    <li><strong>{{field}}</strong>: looked in {{where}}, {{why it is not public}}. <strong>Substitute</strong>: {{...}}</li>
+  </ul>
+  <h3>Completion</h3>
+  <table>
+    <tr><th>Section</th><th class="r">Done</th><th>Note</th></tr>
+    <!-- one row per section -->
+  </table>
+</section>
+
+<footer>
+  <div class="row">{{name}} research note | Data through {{date}} | Completion {{100%}}</div>
+  <div class="row">Prepared from public information. Not investment advice. Every figure traces to the source list.</div>
+</footer>
+
+</div>
+</body>
+</html>

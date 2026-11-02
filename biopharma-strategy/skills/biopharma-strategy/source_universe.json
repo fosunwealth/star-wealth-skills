@@ -1,0 +1,108 @@
+{
+  "name": "Biopharma source registry (10 sources)",
+  "version": "1.0",
+  "updated": "2026-08-27",
+  "description": "Official free sources for Hong Kong and US biopharma research. Six in the base-analysis layer, four in the upstream tracker. Scripts enter through biopharma_data.py and biopharma_tracker.py.",
+  "sources": [
+    {
+      "id": "biopharma_clinical_trials",
+      "layer": "base",
+      "name": "ClinicalTrials.gov",
+      "url": "https://clinicaltrials.gov/api/v2/studies",
+      "region": "global",
+      "stability": "high",
+      "entry": "biopharma_data.get_clinical_trials(kw)",
+      "purpose": "Global phase mix, indication breadth, NCT status"
+    },
+    {
+      "id": "biopharma_fda",
+      "layer": "base",
+      "name": "FDA openFDA",
+      "url": "https://api.fda.gov",
+      "region": "US",
+      "stability": "high",
+      "entry": "biopharma_data.get_fda_drug(brand) / get_fda_orange_book(ingredient)",
+      "purpose": "FDA approvals plus Orange Book ingredient and market status"
+    },
+    {
+      "id": "biopharma_ema",
+      "layer": "base",
+      "name": "EMA EPAR",
+      "url": "https://www.ema.europa.eu",
+      "region": "EU",
+      "stability": "high",
+      "entry": "biopharma_data.get_ema_drugs(active_substance)",
+      "purpose": "EU approval, indication, and therapeutic area, with a 7-day local cache"
+    },
+    {
+      "id": "biopharma_pubmed",
+      "layer": "base",
+      "name": "PubMed (NCBI)",
+      "url": "https://eutils.ncbi.nlm.nih.gov",
+      "region": "global",
+      "stability": "high",
+      "entry": "biopharma_data.search_pubmed(kw) / get_pubmed_summaries(pmids)",
+      "purpose": "Where new clinical data lands first (ASCO/ASH, ORR/PFS/OS)"
+    },
+    {
+      "id": "biopharma_patents",
+      "layer": "base",
+      "name": "Google Patents",
+      "url": "https://patents.google.com/xhr/query",
+      "region": "global",
+      "stability": "medium",
+      "entry": "biopharma_data.get_patents(kw)",
+      "purpose": "Patent expiry estimate and active status by country"
+    },
+    {
+      "id": "biopharma_nmpa",
+      "layer": "base",
+      "name": "NMPA clinical-trial registry",
+      "url": "https://chinadrugtrials.org.cn",
+      "region": "China",
+      "stability": "medium",
+      "entry": "nmpa_clinical_trials.search_clinical_trials(kw)",
+      "purpose": "China CTR id, status, and indication. Playwright headed mode. Query with the Chinese INN."
+    },
+    {
+      "id": "biopharma_cde_priority",
+      "layer": "upstream",
+      "name": "CDE priority review and breakthrough therapy",
+      "url": "https://www.cde.org.cn",
+      "region": "China",
+      "stability": "medium",
+      "entry": "cde_priority_collector.collect()",
+      "purpose": "Months ahead of a China approval. Catalyst calendar only, not a buy signal. Company names in the query stay Chinese."
+    },
+    {
+      "id": "biopharma_ema_chmp",
+      "layer": "upstream",
+      "name": "EMA CHMP meeting highlights",
+      "url": "https://www.ema.europa.eu/en/homepage",
+      "region": "EU",
+      "stability": "high",
+      "entry": "biopharma_tracker.check_ema_chmp(config, pushed)",
+      "purpose": "4-7 days ahead of an EU approval. Actionable."
+    },
+    {
+      "id": "biopharma_sec_8k",
+      "layer": "upstream",
+      "name": "SEC 8-K (EDGAR full-text)",
+      "url": "https://efts.sec.gov/LATEST/search-index",
+      "region": "US",
+      "stability": "high",
+      "entry": "biopharma_tracker.check_partner_sec(config, pushed)",
+      "purpose": "The US partner files the BD or the data first. Useless if the partner is not a US listing."
+    },
+    {
+      "id": "biopharma_news_rss",
+      "layer": "upstream",
+      "name": "Trade-press RSS (7 feeds)",
+      "url": "Endpoints / Fierce Biotech / Fierce Pharma / BioPharma Dive / STAT / PharmaTimes / GEN",
+      "region": "global",
+      "stability": "medium",
+      "entry": "biopharma_tracker.check_industry_news(config, pushed)",
+      "purpose": "BD leaks. Cross-check the partner 8-K. False reports happen."
+    }
+  ]
+}

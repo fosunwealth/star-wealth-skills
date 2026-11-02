@@ -1,0 +1,8 @@
+{
+  "name": "fw-deep-research-runtime",
+  "private": true,
+  "version": "3.7.56",
+  "dependencies": {
+    "echarts": "^6.1.0"
+  }
+}

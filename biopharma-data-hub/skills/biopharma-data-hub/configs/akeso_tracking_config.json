@@ -1,0 +1,66 @@
+{
+  "company": "康方生物",
+  "company_en": "Akeso",
+  "cde_company": "康方生物",
+  "ticker": "09926.HK",
+  "description": "Hong Kong innovative biopharma. Bispecific platform. Ivonescimab (PD-1/VEGF) is the first drug to beat pembrolizumab head-to-head in phase III. The stock moves on HARMONi readouts (+15.8% to +37.5%). This is the name the 14-day abstract lead fits best.",
+  "updated": "2026-08-20",
+  "pipeline_molecules": [
+    {
+      "name_cn": "依沃西单抗",
+      "name_en": "ivonescimab",
+      "code": "AK112/SMT112",
+      "brand_cn": "依达方",
+      "brand_eu": "",
+      "type": "innovative",
+      "note": "PD-1/VEGF bispecific. First head-to-head win versus pembrolizumab. HARMONi-2, HARMONi-3, and HARMONi-7 are phase III."
+    },
+    {
+      "name_cn": "卡度尼利单抗",
+      "name_en": "cadonilimab",
+      "code": "AK104",
+      "brand_cn": "开坦尼",
+      "brand_eu": "",
+      "type": "innovative",
+      "note": "PD-1/CTLA-4 bispecific. First approved IO bispecific, 2022."
+    },
+    {
+      "name_cn": "依若奇单抗",
+      "name_en": "iloskibart",
+      "code": "AK101",
+      "brand_cn": "爱达罗",
+      "brand_eu": "",
+      "type": "innovative",
+      "note": "IL-12/IL-23 antibody, psoriasis, approved 2025"
+    },
+    {
+      "name_cn": "伊努西单抗",
+      "name_en": "ebronucimab",
+      "code": "AK102",
+      "brand_cn": "伊喜宁",
+      "brand_eu": "",
+      "type": "innovative",
+      "note": "PCSK9, hypercholesterolemia, approved 2024"
+    }
+  ],
+  "bd_partners": [
+    {
+      "name_cn": "Summit Therapeutics",
+      "name_en": "Summit",
+      "ticker": "SMMT",
+      "region": "global ex-China",
+      "deal": "Global rights to ivonescimab ex-China. US listing SMMT amplifies the move (SMMT rose 272% on a HARMONi disclosure)."
+    }
+  ],
+  "watch_keywords": [
+    "ivonescimab",
+    "cadonilimab",
+    "AK112",
+    "AK104",
+    "HARMONi",
+    "依沃西",
+    "卡度尼利",
+    "依达方",
+    "开坦尼"
+  ]
+}

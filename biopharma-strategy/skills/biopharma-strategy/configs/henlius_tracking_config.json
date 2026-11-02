@@ -1,0 +1,225 @@
+{
+  "company": "复宏汉霖",
+  "company_en": "Henlius",
+  "ticker": "02696.HK",
+  "description": "Innovative biopharma. Core PD-1 is serplulimab, plus a biosimilar platform. Out-licensing covers the main US and EU markets.",
+  "updated": "2026-08-20",
+  "pipeline_molecules": [
+    {
+      "name_cn": "斯鲁利单抗",
+      "name_en": "serplulimab",
+      "code": "HLX10",
+      "brand_cn": "汉斯状",
+      "brand_eu": "Hetronifly",
+      "type": "innovative",
+      "note": "PD-1 antibody. Lead product. First approved for first-line ES-SCLC."
+    },
+    {
+      "name_cn": "HLX22",
+      "name_en": "HLX22",
+      "code": "HLX22",
+      "brand_cn": "",
+      "brand_eu": "",
+      "type": "innovative",
+      "note": "Novel-epitope HER2 antibody, breast cancer, H1 2026 readout"
+    },
+    {
+      "name_cn": "HLX43",
+      "name_en": "HLX43",
+      "code": "HLX43",
+      "brand_cn": "",
+      "brand_eu": "",
+      "type": "innovative",
+      "note": "PD-L1 ADC, possible best-in-class"
+    },
+    {
+      "name_cn": "HLX04-O",
+      "name_en": "HLX04-O",
+      "code": "HLX04-O",
+      "brand_cn": "",
+      "brand_eu": "",
+      "type": "innovative",
+      "note": "Anti-VEGF for the eye, wAMD, partnered with Essex Bio"
+    },
+    {
+      "name_cn": "曲妥珠单抗",
+      "name_en": "trastuzumab",
+      "code": "HLX02",
+      "brand_cn": "Hanquyou (trastuzumab biosimilar)",
+      "brand_eu": "HERCESSI/Zercepac",
+      "type": "biosimilar",
+      "note": "Approved in China, the US, and the EU"
+    },
+    {
+      "name_cn": "地舒单抗",
+      "name_en": "denosumab",
+      "code": "HLX14",
+      "brand_cn": "",
+      "brand_eu": "Bildyos/Bilprevda",
+      "type": "biosimilar",
+      "note": "First launch in Europe"
+    },
+    {
+      "name_cn": "帕妥珠单抗",
+      "name_en": "pertuzumab",
+      "code": "HLX11",
+      "brand_cn": "",
+      "brand_eu": "POHERDY",
+      "type": "biosimilar",
+      "note": ""
+    },
+    {
+      "name_cn": "抗CD38抗体",
+      "name_en": "daratumumab biosimilar",
+      "code": "HLX15",
+      "brand_cn": "",
+      "brand_eu": "",
+      "type": "biosimilar",
+      "note": "Licensed to Dr. Reddy's"
+    },
+    {
+      "name_cn": "抗CTLA-4抗体",
+      "name_en": "ipilimumab biosimilar",
+      "code": "HLX13",
+      "brand_cn": "",
+      "brand_eu": "",
+      "type": "biosimilar",
+      "note": "Licensed to Sandoz"
+    },
+    {
+      "name_cn": "利妥昔单抗",
+      "name_en": "rituximab",
+      "code": "HLX01",
+      "brand_cn": "汉利康",
+      "brand_eu": "",
+      "type": "biosimilar",
+      "note": "First biosimilar approved in China"
+    },
+    {
+      "name_cn": "阿达木单抗",
+      "name_en": "adalimumab",
+      "code": "HLX03",
+      "brand_cn": "汉达远",
+      "brand_eu": "",
+      "type": "biosimilar",
+      "note": ""
+    },
+    {
+      "name_cn": "贝伐珠单抗",
+      "name_en": "bevacizumab",
+      "code": "HLX04",
+      "brand_cn": "汉贝泰",
+      "brand_eu": "",
+      "type": "biosimilar",
+      "note": ""
+    },
+    {
+      "name_cn": "奈拉替尼",
+      "name_en": "neratinib",
+      "code": "",
+      "brand_cn": "汉奈佳",
+      "brand_eu": "",
+      "type": "in-licensed",
+      "note": ""
+    }
+  ],
+  "bd_partners": [
+    {
+      "name_cn": "卫材",
+      "name_en": "Eisai",
+      "ticker": "4523.T",
+      "region": "Japan",
+      "deal": "Serplulimab Japan commercialization, $75 million upfront"
+    },
+    {
+      "name_cn": "Intas/Accord",
+      "name_en": "Accord Healthcare",
+      "ticker": "",
+      "region": "EU and India",
+      "deal": "Serplulimab, Europe"
+    },
+    {
+      "name_cn": "复星医药",
+      "name_en": "Fosun Pharma",
+      "ticker": "02196.HK",
+      "region": "US",
+      "deal": "Serplulimab, US commercialization"
+    },
+    {
+      "name_cn": "Organon",
+      "name_en": "Organon",
+      "ticker": "OGN",
+      "region": "US",
+      "deal": "Hanquyou (trastuzumab biosimilar)"
+    },
+    {
+      "name_cn": "Abbott",
+      "name_en": "Abbott",
+      "ticker": "ABT",
+      "region": "69 countries in Asia, Africa, and Latin America",
+      "deal": "Four biosimilars and one innovative drug"
+    },
+    {
+      "name_cn": "Dr.Reddy's",
+      "name_en": "Dr. Reddy's",
+      "ticker": "RDY",
+      "region": "43 countries in the US and Europe",
+      "deal": "HLX15, anti-CD38"
+    },
+    {
+      "name_cn": "Lotus",
+      "name_en": "Lotus Pharmaceutical",
+      "ticker": "",
+      "region": "Korea",
+      "deal": "Serplulimab, Korea"
+    },
+    {
+      "name_cn": "Sandoz",
+      "name_en": "Sandoz",
+      "ticker": "",
+      "region": "US, EU, and Japan",
+      "deal": "HLX13, anti-CTLA-4"
+    },
+    {
+      "name_cn": "亿胜生物",
+      "name_en": "Essex Bio",
+      "ticker": "01061.HK",
+      "region": "China",
+      "deal": "HLX04-O, ophthalmology"
+    }
+  ],
+  "watch_keywords": [
+    "复宏汉霖",
+    "Henlius",
+    "斯鲁利单抗",
+    "serplulimab",
+    "汉斯状",
+    "Hetronifly",
+    "HLX22",
+    "HLX43",
+    "HLX14",
+    "HLX15",
+    "HLX13",
+    "HLX11",
+    "HLX04-O",
+    "汉曲优",
+    "trastuzumab",
+    "HERCESSI",
+    "Zercepac",
+    "license-out",
+    "license agreement",
+    "授权",
+    "合作",
+    "商业化",
+    "获批",
+    "批准",
+    "受理",
+    "优先审评",
+    "突破性疗法",
+    "CHMP",
+    "FDA approval",
+    "BLA",
+    "NDA",
+    "MAA"
+  ]
+}
