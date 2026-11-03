@@ -23,3 +23,6 @@ fosun.env
 # Generated reports and chart payloads
 artifacts/
 reports/
+
+# Internal notes. This folder never ships: it carries accounts, push commands and contacts.
+config_md/
