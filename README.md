@@ -16,7 +16,7 @@ Seven AI research, trading and market-data plugins for Hong Kong and US markets,
 | [hk-ipo-analysis](./hk-ipo-analysis/) | 4.12.18 | Hong Kong IPO list, or one HTML subscription report with a five-factor score and allotment tiers. |
 | [tech-hardware-research](./tech-hardware-research/) | 2.5.4 | One HTML research note for a tech-hardware name or vertical: supply chain, metrics and traps. |
 
-Six of the seven are read-only research. `fosun-wealth-star-ai` reaches a hosted connector and holds no market logic of its own. `fw-trade-skill` is the only one that can send an order, and it sends nothing without an explicit yes.
+Five of the seven are read-only research that ships its own scripts. `fosun-wealth-star-ai` holds no market logic of its own: it ships ten read-only market tools plus `ask_star_ai`, which hands the whole request to Star AI and can reach positions and the trading flows behind that service's own per-order confirmation. `fw-trade-skill` places its own orders, and it sends nothing without an explicit yes.
 
 `fosun-wealth-star-ai` works differently from the other six, so read its own README before changing it: it ships no scripts, only an MCP URL plus a skill. Its tools live on a server that is not in this repository. That is the same arrangement the Gmail connector uses — the host holds the connection, the plugin holds the instructions — and it is why installing the plugin never exposes server code.
 

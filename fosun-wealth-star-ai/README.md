@@ -1,10 +1,10 @@
 # fosun-wealth-star-ai
 
-Explore Hong Kong, US, and China A-share market quotes, K-lines, ETFs, IPOs, and financial reports with Fosun Wealth Star AI, over one hosted connector. Read-only. No orders.
+Explore Hong Kong, US, and China A-share market quotes, K-lines, ETFs, IPOs, and financial reports with Fosun Wealth Star AI, over one hosted connector. Or hand a whole request to Star AI: it reaches your own positions, and places an order only after you confirm that order.
 
-**中文名**：星财富行情与研究连接器
+**中文名**：星财富 Star AI 连接器
 
-你问一只港股、美股或 A 股，它从星财富的数据服务取代码、实时行情、K 线、ETF 指标、IPO 日历和财报，再把数字整理给你。它不下单，也不动账户。
+你问一只港股、美股或 A 股，它从星财富的数据服务取代码、实时行情、K 线、ETF 指标、IPO 日历和财报。你也可以把整句话交给 Star AI：它跑完整流程，能查你自己名下的持仓，也能在你逐笔确认之后下单。
 
 ## What this plugin contains
 
@@ -36,7 +36,8 @@ No API key goes into a chat, and no key is stored in this repository.
 
 ## Boundaries
 
-- Read-only. This connector has no order entry, no fund transfer, and no account changes. It says so when asked, and points the user to the Fosun Wealth app.
+- The ten market-data tools are read-only: they place no orders and change nothing.
+- `ask_star_ai` reaches the rest of Star AI, including your own positions and the trading flows. An order or a cancellation goes out only after Star AI shows the details and you confirm that one. Fund transfers and account changes are not available here.
 - Every figure comes from the connector's tool output. When a source is down, the answer says so instead of filling the gap.
 - Market data and research summaries are for reference only and are not investment advice.
 
