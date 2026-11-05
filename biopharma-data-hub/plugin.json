@@ -1,13 +1,13 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "biopharma-data-hub",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "Public pipeline, approval, patent, and literature pulls for one biopharma name, plus upstream tracking. Objective only. No orders.",
   "author": {
     "name": "Star Wealth",
-    "url": "https://www.fosunwealth.com"
+    "url": "https://www.fosunwealth.hk"
   },
-  "homepage": "https://www.fosunwealth.com",
+  "homepage": "https://www.fosunwealth.hk",
   "license": "MIT",
   "keywords": [
     "fosunwealth",

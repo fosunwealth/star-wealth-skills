@@ -1,13 +1,13 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "biopharma-strategy",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "A four-step biopharma note, or upstream tracking that keeps only material events. Objective only. No orders.",
   "author": {
     "name": "Star Wealth",
-    "url": "https://www.fosunwealth.com"
+    "url": "https://www.fosunwealth.hk"
   },
-  "homepage": "https://www.fosunwealth.com",
+  "homepage": "https://www.fosunwealth.hk",
   "license": "MIT",
   "keywords": [
     "fosunwealth",

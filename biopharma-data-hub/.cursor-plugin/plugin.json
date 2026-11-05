@@ -1,11 +1,11 @@
 {
   "name": "biopharma-data-hub",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "Public pipeline, approval, patent, and literature pulls for one biopharma name, plus upstream tracking. Objective only. No orders.",
   "author": {
     "name": "Star Wealth"
   },
-  "homepage": "https://www.fosunwealth.com",
+  "homepage": "https://www.fosunwealth.hk",
   "license": "MIT",
   "keywords": [
     "fosunwealth",

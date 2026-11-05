@@ -1,13 +1,13 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "hk-ipo-analysis",
-  "version": "4.12.17",
+  "version": "4.12.18",
   "description": "Hong Kong IPO list or one HTML subscription report: five-factor score and allotment tiers. Gate, then MCP, then one file. Objective only. No orders.",
   "author": {
     "name": "Star Wealth",
-    "url": "https://www.fosunwealth.com"
+    "url": "https://www.fosunwealth.hk"
   },
-  "homepage": "https://www.fosunwealth.com",
+  "homepage": "https://www.fosunwealth.hk",
   "license": "MIT",
   "keywords": [
     "fosunwealth",

@@ -1,13 +1,13 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "tech-hardware-research",
-  "version": "2.5.3",
+  "version": "2.5.4",
   "description": "One HTML research note for a tech-hardware name or vertical: supply chain, metrics, and traps. Objective only. No orders.",
   "author": {
     "name": "Star Wealth",
-    "url": "https://www.fosunwealth.com"
+    "url": "https://www.fosunwealth.hk"
   },
-  "homepage": "https://www.fosunwealth.com",
+  "homepage": "https://www.fosunwealth.hk",
   "license": "MIT",
   "keywords": [
     "fosunwealth",

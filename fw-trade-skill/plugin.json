@@ -1,13 +1,13 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "fw-trade-skill",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Hong Kong and US equity orders on paper or live, after an explicit confirmation. One gateway. No research reports.",
   "author": {
     "name": "Star Wealth",
-    "url": "https://www.fosunwealth.com"
+    "url": "https://www.fosunwealth.hk"
   },
-  "homepage": "https://www.fosunwealth.com",
+  "homepage": "https://www.fosunwealth.hk",
   "license": "MIT",
   "keywords": [
     "fosunwealth",
