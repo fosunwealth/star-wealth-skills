@@ -2,7 +2,7 @@
 
 Seven AI research, trading and market-data plugins for Hong Kong and US markets, packaged as [Agent Plugins 1.0.0](https://agent-plugins.org). Cursor and Grok Bot load them without conversion.
 
-**中文**：这个仓库装着复星财富（星财富）的七个投研、交易与行情插件。每个插件都按 Agent Plugins 1.0.0 这个公开格式打包，Cursor 和 Grok Bot 都能直接加载。你从团队市场装上一个插件，用一句大白话提问，模型就按插件里写好的流程干活。
+**English** | [简体中文](docs/README.zh-CN.md) | [繁體中文](docs/README.zh-TW.md)
 
 ## Plugins
 
