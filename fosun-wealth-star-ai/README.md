@@ -1,6 +1,6 @@
-# fosunwealth
+# fosun-wealth-star-ai
 
-Explore Hong Kong, US, and China A-share market quotes, K-lines, ETFs, IPOs, and financial reports with Fosun Wealth AI, over one hosted connector. Read-only. No orders.
+Explore Hong Kong, US, and China A-share market quotes, K-lines, ETFs, IPOs, and financial reports with Fosun Wealth Star AI, over one hosted connector. Read-only. No orders.
 
 **中文名**：星财富行情与研究连接器
 

@@ -19,9 +19,9 @@
       "description": "A four-step biopharma note, or upstream tracking that keeps only material events. Objective only. No orders."
     },
     {
-      "name": "fosunwealth",
-      "source": "fosunwealth",
-      "description": "Hong Kong, US and China A-share market data with Fosun Wealth AI, or one request handed to the Star AI assistant, over one hosted MCP connector with OAuth sign-in."
+      "name": "fosun-wealth-star-ai",
+      "source": "fosun-wealth-star-ai",
+      "description": "Hong Kong, US and China A-share market data with Fosun Wealth Star AI, or one request handed to the Star AI assistant, over one hosted MCP connector with OAuth sign-in."
     },
     {
       "name": "fw-deep-research",

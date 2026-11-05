@@ -1,9 +1,11 @@
 {
-  "name": "fosunwealth",
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "fosun-wealth-star-ai",
   "version": "1.2.0",
   "description": "Explore Hong Kong, US and China A-share market data with Fosun Wealth AI, or hand a whole request to the Star AI assistant over the same hosted connector.",
   "author": {
-    "name": "Fosun Wealth"
+    "name": "Fosun Wealth",
+    "url": "https://www.fosunwealth.hk"
   },
   "homepage": "https://www.fosunwealth.hk",
   "license": "MIT",
@@ -14,6 +16,5 @@
     "hkex",
     "etf",
     "ipo"
-  ],
-  "logo": "assets/logo.svg"
+  ]
 }
