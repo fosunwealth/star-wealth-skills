@@ -45,4 +45,4 @@ No API key goes into a chat, and no key is stored in this repository.
 
 ## Licence
 
-MIT, for the plugin files in this directory. The hosted service behind the MCP URL is not part of this repository and is not covered by this licence.
+Apache-2.0, for the plugin files in this directory. The hosted service behind the MCP URL is not part of this repository and is not covered by this licence.

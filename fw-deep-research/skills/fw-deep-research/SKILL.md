@@ -1,7 +1,7 @@
 ---
 name: fw-deep-research
 description: "Stop staring at the tape and guessing the next move — just ask “is NVIDIA worth chasing?”, and the Star Wealth (Fosun Wealth) AI HK/US Equity Deep Research Skill walks you through four steps: business model for capability, valuation for the price, financials for quality, and the latest events for catalysts. It turns a pile of filings and market data into one interactive HTML research report — charts included, broken down objectively end to end, no buy or sell calls. Open the Star Wealth app for a free API key and put it to work."
-license: MIT
+license: Apache-2.0
 allowed-tools: Bash Read Write WebSearch WebFetch Skill
 metadata:
   author: "Star Wealth"

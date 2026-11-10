@@ -1,7 +1,7 @@
 ---
 name: hk-ipo-analysis
 description: "Stop guessing whether a Hong Kong IPO is worth subscribing — just say “run the numbers on MINIMAX for me”, and the Star Wealth (Fosun Wealth) AI HK IPO Subscription Analysis Skill scores the deal on five factors: subscription heat, fundamentals, sentiment, industry, and valuation. It reads the allotment odds tier by tier and hands you one interactive HTML report, broken down objectively end to end, no buy or sell calls. Open the Star Wealth app for a free API key and put it to work."
-license: MIT
+license: Apache-2.0
 allowed-tools: Bash Read Write WebSearch WebFetch
 metadata:
   author: "Star Wealth"

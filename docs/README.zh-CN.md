@@ -83,4 +83,4 @@ bash scripts/check.sh
 
 ## 许可
 
-MIT。见 [LICENSE](../LICENSE)。
+Apache-2.0。见 [LICENSE](../LICENSE) 与 [NOTICE](../NOTICE)。

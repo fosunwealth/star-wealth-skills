@@ -1,7 +1,7 @@
 ---
 name: biopharma-data-hub
 description: "Stop flipping through pipeline charts and staring at the drug regulator — just say “take a look at Akeso for me”, and the Star Wealth (Fosun Wealth) biopharma data-source Skills pull every source in one pass: global clinical pipelines, approvals across the FDA / NMPA / EMA, patent moat, and frontier clinical literature, plus BD and upstream approval tracking that lands days to weeks ahead of announcements. Clinical data readouts, license-outs, approval milestones — explained in one go, broken down objectively end to end, no buy or sell calls. Open the Star Wealth app for a free API key and put it to work."
-license: MIT
+license: Apache-2.0
 allowed-tools: Bash Read Write
 metadata:
   author: "Star Wealth"

@@ -85,4 +85,4 @@ The script checks every manifest against the published JSON Schema, runs the off
 
 ## License
 
-MIT. See [LICENSE](./LICENSE).
+Apache-2.0. See [LICENSE](./LICENSE) and [NOTICE](./NOTICE).

@@ -1,7 +1,7 @@
 ---
 name: tech-hardware-research
 description: "Stop digging through a dozen industry reports — just ask “how do I research semiconductors?”, and the Star Wealth (Fosun Wealth) AI Tech Hardware Industry Research skill hands you the full research framework for six tech-hardware verticals in one pass: supply-chain maps, key tracking metrics, a due-diligence question bank, a do-not-ask list for expert interviews, and seven financial-fraud red flags. Six steps from desk research to high-frequency tracking, every number forced to answer “so what”, broken down objectively end to end, no buy or sell calls. Open the Star Wealth app for a free API key and put it to work."
-license: MIT
+license: Apache-2.0
 allowed-tools: Bash Read Write WebSearch WebFetch
 metadata:
   author: "Star Wealth"

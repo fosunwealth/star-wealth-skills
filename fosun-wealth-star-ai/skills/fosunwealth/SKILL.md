@@ -1,6 +1,7 @@
 ---
 name: fosunwealth
 description: Query Hong Kong, US, and China A-share stock codes, real-time quotes, K-lines, ETFs, IPO calendars, and financial reports through the Fosun Wealth connector, or hand a whole request to the Star AI assistant.
+license: Apache-2.0
 ---
 
 # FosunWealth AI

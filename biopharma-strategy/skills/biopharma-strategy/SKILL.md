@@ -1,7 +1,7 @@
 ---
 name: biopharma-strategy
 description: "Stop staring at the tape and guessing the next move — just ask “is Akeso worth chasing?”, and the Star Wealth (Fosun Wealth) AI Biopharma Investment Research Strategy walks you through four steps: pipeline review for capability, approval catalysts for upside, patent moat for durability, frontier literature for the latest signals. Layer on BD and upstream approval tracking that lands days to weeks ahead of announcements, plus a materiality filter that flags only the events that truly move the stock (clinical data readouts, license-outs, approvals/rejections) — no noise. Broken down objectively end to end. Open the Star Wealth app for a free API key and put it to work."
-license: MIT
+license: Apache-2.0
 allowed-tools: Bash Read Write
 metadata:
   author: "Star Wealth"

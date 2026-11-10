@@ -1,7 +1,7 @@
 ---
 name: fw-trade-skill
 description: "Stop bouncing between a dozen apps just to get one trade done — just say “buy 100 shares of Tencent for me”, and the Star Wealth (Fosun Wealth) AI HK/US Intelligent Trading Skill runs the whole flow in one pass: pre-trade check, order placement, and live monitoring. It covers the full order lifecycle — market and limit orders, changes, cancels, and status — for Hong Kong and US names, with clear intent confirmation before anything is sent. You stay in control the whole way. Open the Star Wealth app for a free API key and put it to work."
-license: MIT
+license: Apache-2.0
 allowed-tools: Bash Read
 metadata:
   author: "Star Wealth"
